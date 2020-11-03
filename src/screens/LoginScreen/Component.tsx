@@ -1,8 +1,8 @@
 import React from "react";
-import { SafeAreaView, Text } from "react-native";
+import { AppRegistry, SafeAreaView, Text } from "react-native";
 import { Navigation } from "react-native-navigation";
 
-export const Component = () => {
+const Component = () => {
   return (
     <SafeAreaView>
       <Text>Welcome to Uber</Text>
@@ -10,4 +10,4 @@ export const Component = () => {
   );
 };
 
-Navigation.registerComponent("LoginScreen", () => Component);
+export default Component;

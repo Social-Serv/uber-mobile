@@ -1,6 +1,7 @@
 import React from "react";
 import { Navigation } from "react-native-navigation";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { AppRegistry, Button, StyleSheet, Text, View } from "react-native";
+import Component from "./src/screens/LoginScreen";
 
 type Props = {
   componentId: string;
@@ -12,7 +13,8 @@ export default function App(props: Props) {
       <Text>Uber Mobile</Text>
       <Button
         title={"Push Login Screen"}
-        onPress={() =>
+        onPress={() => {
+          console.log(props.componentId);
           Navigation.push(props.componentId, {
             component: {
               name: "LoginScreen",
@@ -24,14 +26,21 @@ export default function App(props: Props) {
                 },
               },
             },
-          })
-        }
+          });
+        }}
       />
     </View>
   );
 }
 
-Navigation.registerComponent("Home", () => App);
+Navigation.registerComponent("Home", () => require("./App").default);
+
+Navigation.registerComponent(
+  "LoginScreen",
+  () => require("./src/screens/LoginScreen").default
+);
+AppRegistry.registerComponent("Home", () => App);
+AppRegistry.registerComponent("LoginScreen", () => Component);
 
 Navigation.events().registerAppLaunchedListener(async () => {
   Navigation.setRoot({
