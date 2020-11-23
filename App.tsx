@@ -1,13 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navigation } from "react-native-navigation";
-import { AppRegistry, Button, StyleSheet, Text, View } from "react-native";
+import {
+  AppRegistry,
+  Button,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import Component from "./src/screens/LoginScreen";
+import firebase from "firebase";
+import firebaseActions from "./src/firebase/index";
+import { firebaseConfig } from "./src/firebase/firebaseConfig";
+import { TextField } from "react-native-ui-lib";
 
 type Props = {
   componentId: string;
 };
 
 export default function App(props: Props) {
+  useEffect(() => {
+    // if (!firebase.app.name) firebase.initializeApp(firebaseConfig);
+    //
+    // firebaseActions.login("rostik270900@gmail.com", "password");
+  }, []);
+
   return (
     <View style={styles.container}>
       <Text>Uber Mobile</Text>
@@ -15,13 +32,13 @@ export default function App(props: Props) {
         title={"Push Login Screen"}
         onPress={() => {
           console.log(props.componentId);
-          Navigation.push(props.componentId, {
+          Navigation.push("mainComponentId", {
             component: {
               name: "LoginScreen",
               options: {
                 topBar: {
                   title: {
-                    text: "LoginScreen",
+                    text: "Login Screen",
                   },
                 },
               },
@@ -32,31 +49,6 @@ export default function App(props: Props) {
     </View>
   );
 }
-
-Navigation.registerComponent("Home", () => require("./App").default);
-
-Navigation.registerComponent(
-  "LoginScreen",
-  () => require("./src/screens/LoginScreen").default
-);
-AppRegistry.registerComponent("Home", () => App);
-AppRegistry.registerComponent("LoginScreen", () => Component);
-
-Navigation.events().registerAppLaunchedListener(async () => {
-  Navigation.setRoot({
-    root: {
-      stack: {
-        children: [
-          {
-            component: {
-              name: "Home",
-            },
-          },
-        ],
-      },
-    },
-  });
-});
 
 const styles = StyleSheet.create({
   container: {

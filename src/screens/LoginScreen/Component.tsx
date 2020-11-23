@@ -10,4 +10,6 @@ const Component = () => {
   );
 };
 
+Navigation.registerComponent("qqq", () => Component);
+
 export default Component;
