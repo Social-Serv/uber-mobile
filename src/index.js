@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 import { Navigation } from "react-native-navigation";
+import { registerRootComponent } from "expo";
 
 function App(props) {
   useEffect(() => {
@@ -33,6 +34,8 @@ function App(props) {
     </View>
   );
 }
+
+registerRootComponent(LoginScreen2);
 
 function LoginScreen2(props) {
   useEffect(() => {
@@ -69,23 +72,6 @@ function LoginScreen2(props) {
 Navigation.registerComponent("Home", () => App);
 Navigation.registerComponent("LoginScreen", () => LoginScreen2);
 
-Navigation.events().registerAppLaunchedListener(async () => {
-  console.log("ha-ha setRoot");
-  Navigation.setRoot({
-    root: {
-      stack: {
-        children: [
-          {
-            component: {
-              id: "mainComponentId",
-              name: "LoginScreen",
-            },
-          },
-        ],
-      },
-    },
-  });
-});
 
 const styles = StyleSheet.create({
   container: {

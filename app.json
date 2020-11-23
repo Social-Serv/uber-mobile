@@ -1,0 +1,8 @@
+{
+  "expo":
+  {
+    "name": "Uber Mobile",
+    "slug": "uber-mobile",
+    "entryPoint": "./src/index.js"
+  }
+}

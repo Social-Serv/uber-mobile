@@ -30,5 +30,6 @@
     "web": "expo web",
     "eject": "expo eject"
   },
+  "main": "src/index.js",
   "private": true
 }
